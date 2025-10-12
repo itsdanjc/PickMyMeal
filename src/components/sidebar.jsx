@@ -20,7 +20,7 @@ import {
 
 
 export default function Sidebar() {
-    const sidebarContentItems = [];
+    const sidebarContentItems = [{id: "123456789", title: "This is a really long title name "}];
     const SidebarContentFallback = (
         <EmptyState.Root size={"sm"}>
             <EmptyState.Content>
@@ -121,7 +121,7 @@ export default function Sidebar() {
             <SidebarHeader />
             <ScrollArea.Root flex={1} maxW={"inherit"}>
                 <ScrollArea.Viewport maxW={"inherit"}>
-                    <ScrollArea.Content maxW={"inherit"}>
+                    <ScrollArea.Content maxW={"inherit"} minW={"0 !important"}>
                         <Box paddingInline={"20px"} maxW={"inherit"}>
                             <For each={sidebarContentItems} fallback={SidebarContentFallback}>
                                 {(item) => (
