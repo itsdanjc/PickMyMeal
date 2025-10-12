@@ -20,7 +20,7 @@ import {
 
 
 export default function Sidebar() {
-    const sidebarContentItems = [{id: "123456789", title: "This is a really long title name "}];
+    const sidebarContentItems = [];
     const SidebarContentFallback = (
         <EmptyState.Root size={"sm"}>
             <EmptyState.Content>
@@ -58,17 +58,17 @@ export default function Sidebar() {
             paddingInline={"20px"}
             paddingBlock={"10px"}>
             <footer>
-                <Text textStyle={"sm"}>
+                <Text textStyle={"sm"} color={useColorModeValue("gray.700", "gray.400")}>
                     Made by{" "}
-                    <Link 
+                    <Link color={useColorModeValue("gray.700", "gray.400")}
                         href="https://itsdanjc.com"
                         variant={"underline"}>
                             itsdanjc
                     </Link>.
                 </Text>
-                <Text textStyle={"sm"}>
+                <Text textStyle={"sm"} color={useColorModeValue("gray.700", "gray.400")}>
                     View source on{" "}
-                    <Link 
+                    <Link color={useColorModeValue("gray.700", "gray.400")} 
                         href="https://github.com/itsdanjc/PickMyMeal"
                         variant={"underline"}>
                             GitHub
