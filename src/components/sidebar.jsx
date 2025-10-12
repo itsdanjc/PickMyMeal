@@ -20,17 +20,7 @@ import {
 
 
 export default function Sidebar() {
-    const sidebarContentItems = (() => {
-        const l = [];
-        for (let i = 0; i < 123; i++) {
-            l.push({
-                id: i,
-                title: i,
-                address: "n/a"
-            });
-        }
-        return l;
-    })();
+    const sidebarContentItems = [];
     const SidebarContentFallback = (
         <EmptyState.Root size={"sm"}>
             <EmptyState.Content>
