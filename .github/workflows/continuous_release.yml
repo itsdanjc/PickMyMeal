@@ -14,12 +14,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Environment
+        id: vars
+        run: |
+          DATE="wip-$(date +'%Y-%m-%d')"
+          echo "DATE=DATE" >> $GITHUB_ENV
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: "${{ format('yyyy.MM.dd', github.event.head_commit.timestamp) }}"
-          name: "${{ format('yyyy.MM.dd', github.event.head_commit.timestamp) }} (Work In Progress)"
+          tag_name: ${{ env.DATE }}
+          name: Work In Progress (${{ env.DATE }})
           prerelease: true
-          generate_release_notes: false
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
