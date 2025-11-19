@@ -1,5 +1,5 @@
 import { Button, Flex, Text, Input, useBreakpointValue  } from "@chakra-ui/react"
-import { BsLayoutSidebar, BsShare } from "react-icons/bs"
+import { BsLayoutSidebar, BsShare, BsBoxArrowInRight } from "react-icons/bs"
 import { useSidebar } from "../App";
 
 export default function Header() {
@@ -23,6 +23,10 @@ export default function Header() {
             <Flex align={"center"} gap={"10px"}>
                 <Button size={"sm"} variant={"outline"}>
                     <BsShare />
+                </Button>
+                <Button size={"sm"} variant={"surface"} colorPalette={"blue"}>
+                    <BsBoxArrowInRight />
+                    <Text>Sign In</Text>
                 </Button>
             </Flex>
         </Flex>
