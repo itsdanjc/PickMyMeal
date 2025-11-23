@@ -1,5 +1,5 @@
 import Grid from './components/Grid.jsx'
-import GridItem from './components/Grid.jsx'
+import GridItem from './components/GridItem.jsx'
 
 export default function App() {
   return (
@@ -8,9 +8,9 @@ export default function App() {
         gridRows={"auto 1fr"}
         gridColumns={"250px 1fr"}>
 
-        <GridItem>Grid</GridItem>
-        <GridItem>Grid</GridItem>
-        <GridItem>Grid</GridItem>
+        <GridItem gridColumn={"1/-1"}>Header</GridItem>
+        <GridItem>Sidebar</GridItem>
+        <GridItem>Main</GridItem>
     </Grid>
   )
 }

@@ -1,17 +1,18 @@
-export default function Grid(
+export default function GridItem(
     {
         children,
         className = "",
-        gridRows = "",
-        gridColumns = ""
+        gridColumn="",
+        gridRow="",
+        ...styles
+
     }
 ) {
     const baseStyles = {
-        display: "grid",
-        gridTemplateColumns: gridColumns,
-        gridTemplateRows: gridRows,
+        gridColumn: gridColumn,
+        gridRow: gridRow,
+        ...styles
     };
-
 
     return (
         <div className={className} style={baseStyles}>
