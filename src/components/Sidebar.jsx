@@ -1,22 +1,27 @@
 import {useState, useEffect} from "react";
+import {Box, Container, Spinner, EmptyState, Button, Text, Link} from "@chakra-ui/react";
+import {BsClockHistory } from "react-icons/bs"
 
-export default function Sidebar({useMobileVariant = false}) {
-    const CLASS_NAME = "sidebar";
-    const CLASS_NAME_MOBILE = `${CLASS_NAME} ${CLASS_NAME}-mobile`;
+export default function Sidebar() {
 
     async function getHistoryObjects() {
         return [{}];
     }
 
     return (
-        <nav className={useMobileVariant ? CLASS_NAME_MOBILE : CLASS_NAME}>
+        <Container p={"20px"}>
             <SidebarItemList/>
-        </nav>
+        </Container>
     )
 };
 
 function SidebarItemList() {
     const [items, setItems] = useState(null);
+    const addItemAction = (
+        <Button w={"100%"}>
+            Add
+        </Button>
+    )
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -25,25 +30,43 @@ function SidebarItemList() {
 
     if (items == null) {
         // Render loading state
-        return <div>Loading...</div>;
+        return <Box textAlign={"center"}><Spinner /></Box>;
     }
+
     else if (!items || !items.length) {
-        // Render empty state
-        return <div>Empty</div>;
+        return (
+            <>
+                <EmptyState.Root textAlign="center" size={"sm"}>
+                    <EmptyState.Content>
+                        <EmptyState.Indicator>
+                            <BsClockHistory/>
+                        </EmptyState.Indicator>
+                        <EmptyState.Title>
+                            You Haven't Added Any Menus Yet!
+                        </EmptyState.Title>
+                        <EmptyState.Description>
+                            Your previous menus will show up here so you can quickly pick another meal later.
+                        </EmptyState.Description>
+                    </EmptyState.Content>
+                </EmptyState.Root>
+                {addItemAction}
+            </>
+        );
     }
 
     // Populated state
     return (
-        <ul>{items.map(i => <SidebarItem data={i} />)}</ul>
-    );
+        <>
+            {items.map(i => <SidebarItem data={i} />)}
+            {addItemAction}
+        </>
+    )
 }
 
 function SidebarItem({data = {}}) {
     return (
-        <li>
-            <a href={`/m/${data.id}`}>
-                {data.title}
-            </a>
-        </li>
-    )
+        <Link href={`/m/${data.id}`} display={"block"} mb={"15px"}>
+            {data.title}
+        </Link>
+    );
 }
