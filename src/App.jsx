@@ -4,7 +4,7 @@ import GridItem from './components/GridItem.jsx'
 export default function App() {
   return (
     <Grid
-        className={"grid"}
+        className={"layout"}
         gridRows={"auto 1fr"}
         gridColumns={"250px 1fr"}>
 

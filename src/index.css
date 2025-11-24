@@ -1,0 +1,13 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+#root{
+    width: 100dvw;
+    height: 100vh;
+}
+
+.layout{
+    height: 100%;
+}

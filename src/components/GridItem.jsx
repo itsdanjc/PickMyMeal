@@ -4,14 +4,12 @@ export default function GridItem(
         className = "",
         gridColumn="",
         gridRow="",
-        ...styles
 
     }
 ) {
     const baseStyles = {
         gridColumn: gridColumn,
         gridRow: gridRow,
-        ...styles
     };
 
     return (
