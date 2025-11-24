@@ -1,5 +1,6 @@
 import Grid from './components/Grid.jsx'
 import GridItem from './components/GridItem.jsx'
+import Sidebar from "./components/Sidebar.jsx";
 
 export default function App() {
   return (
@@ -9,7 +10,9 @@ export default function App() {
         gridColumns={"250px 1fr"}>
 
         <GridItem gridColumn={"1/-1"}>Header</GridItem>
-        <GridItem>Sidebar</GridItem>
+        <GridItem>
+            <Sidebar />
+        </GridItem>
         <GridItem>Main</GridItem>
     </Grid>
   )
