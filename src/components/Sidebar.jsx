@@ -34,6 +34,16 @@ function SidebarItemList() {
 
     // Populated state
     return (
-        <ul>{items.map(i => <li>{i}</li>)}</ul>
+        <ul>{items.map(i => <SidebarItem data={i} />)}</ul>
     );
+}
+
+function SidebarItem({data = {}}) {
+    return (
+        <li>
+            <a href={`/m/${data.id}`}>
+                {data.title}
+            </a>
+        </li>
+    )
 }
