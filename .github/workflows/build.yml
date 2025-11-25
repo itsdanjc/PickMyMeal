@@ -11,9 +11,6 @@ on:
       - master
 
 # allow workflow to write to repo (needed for pushing branch / creating releases)
-permissions:
-  contents: write
-
 concurrency:
   group: build-${{ github.ref }}
   cancel-in-progress: true
@@ -21,6 +18,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - name: Build
       uses: mmedoo/build-react-on-push@v1.3
