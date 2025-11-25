@@ -29,10 +29,9 @@ jobs:
 
       - name: Create release
         uses: ncipollo/release-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag: ${{ steps.generate_release_tag.outputs.release_tag }}
           name: Release ${{ steps.generate_release_tag.outputs.release_tag }} (Work in progress)
           makeLatest: true
           generateReleaseNotes: true
+          token: ${{ secrets.GITHUB_TOKEN }}
