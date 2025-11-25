@@ -1,0 +1,30 @@
+name: Build and make release
+
+on:
+  push:
+    branches: [ "master" ]
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate release tag
+        id: generate_release_tag
+        uses: alexvingg/next-release-tag@v1.0.4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag_prefix: ''
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.generate_release_tag.outputs.release_tag }}
+          name: Version (${{ steps.generate_release_tag.outputs.release_tag }}) (Work In Progress)
+          generate_release_notes: true
+          token: ${{ secrets.GITHUB_TOKEN }}
