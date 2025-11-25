@@ -1,0 +1,64 @@
+# This GitHub Action builds your React app on every push and publishes it to a 
+# branch and directory of your choice. This Action ensures that all files and 
+# directories surrounding the specified directory are preserved without deletion.
+# It facilitates the seamless publication of your build files to the designated directory.
+
+name: Build Project
+
+on:
+  push:
+    branches:
+      - master
+
+# allow workflow to write to repo (needed for pushing branch / creating releases)
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build
+      uses: mmedoo/build-react-on-push@v1.3
+      with:
+
+        # build files directory inside branch.
+        # if it doesn't exist, it will be created.
+        # default: root
+        TARGET_DIRECTORY: '.'
+
+        # branch name, if doesn't exist, it will be created
+        # if it doesn't exist, it will be created.
+        # default: build
+        BRANCH_NAME: 'build'
+
+        # directory of your React app
+        # default: .
+        APP_DIRECTORY: '.'
+
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Checkout branch
+      uses: actions/checkout@v3
+      with:
+          ref: 'build'
+          fetch-depth: 0
+
+    - name: Generate release tag
+      id: generate_release_tag
+      uses: alexvingg/next-release-tag@v1.0.3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        tag_prefix: ''
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.generate_release_tag.outputs.release_tag }}
+        release_name: Release ${{ steps.generate_release_tag.outputs.release_tag }} (Work in progress)
