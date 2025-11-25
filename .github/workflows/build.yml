@@ -27,5 +27,4 @@ jobs:
           tag_name: ${{ steps.generate_release_tag.outputs.release_tag }}
           name: Version (${{ steps.generate_release_tag.outputs.release_tag }}) (Work In Progress)
           generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
