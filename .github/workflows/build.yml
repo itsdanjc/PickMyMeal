@@ -1,24 +1,18 @@
-name: Build Project
+name: Build and make release
 
 on:
   push:
-    branches:
-      - master
+    branches: [ "master" ]
 
 permissions:
   contents: write
 
-concurrency:
-  group: build-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  build:
+  create-release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout branch
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Generate release tag
         id: generate_release_tag
@@ -28,10 +22,10 @@ jobs:
           tag_prefix: ''
 
       - name: Create release
-        uses: ncipollo/release-action@v1
+        uses: softprops/action-gh-release@v2
         with:
-          tag: ${{ steps.generate_release_tag.outputs.release_tag }}
-          name: Release ${{ steps.generate_release_tag.outputs.release_tag }} (Work in progress)
-          makeLatest: true
-          generateReleaseNotes: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ steps.generate_release_tag.outputs.release_tag }}
+          name: Version (${{ steps.generate_release_tag.outputs.release_tag }}) (Work In Progress)
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
