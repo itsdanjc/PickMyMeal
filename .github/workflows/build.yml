@@ -1,8 +1,7 @@
 name: Build and make release
 
 on:
-  push:
-    branches: [ "master" ]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -25,6 +24,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.generate_release_tag.outputs.release_tag }}
-          name: Version (${{ steps.generate_release_tag.outputs.release_tag }}) (Work In Progress)
+          name: ${{ steps.generate_release_tag.outputs.release_tag }} (Work In Progress)
           generate_release_notes: true
           token: ${{ secrets.GITHUB_TOKEN }}
