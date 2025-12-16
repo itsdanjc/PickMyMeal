@@ -6,8 +6,7 @@ import {
     IconButton,
     useBreakpointValue
 } from "@chakra-ui/react"
-import { BsLayoutSplit } from "react-icons/bs";
-import { Outlet } from "react-router-dom";
+import { BsList } from "react-icons/bs";
 import Sidebar from "./components/Sidebar.jsx";
 import AppRoutes from "./routes.jsx";
 import {useState} from "react";
@@ -19,7 +18,8 @@ function DesktopLayout() {
                 colSpan={2}
                 bg="bg.muted"
                 borderBottomWidth={"1px"}
-                borderColor="colorPalette.800">
+                borderColor="colorPalette.800"
+                p={2}>
                 Header
             </GridItem>
             <GridItem
@@ -57,19 +57,18 @@ function MobileLayout() {
                     </Drawer.Content>
                 </Drawer.Positioner>
             </Drawer.Root>
-            <Grid h="100vh" templateRows={"auto 1fr"}>
+            <Grid h="100dvh" templateRows={"auto 1fr"}>
                 <GridItem
-                    colSpan={2}
                     bg="bg.muted"
                     borderBottomWidth={"1px"}
-                    borderColor="colorPalette.800">
+                    borderColor="colorPalette.800"
+                    p={2}>
                     <IconButton
                         aria-label="Open menu"
-                        icon={<BsLayoutSplit/>}
-                        variant="ghost"
+                        variant="outline"
                         onClick={() => setOpen(true)}
                         mr={2}
-                    />
+                    ><BsList/></IconButton>
                     Header
                 </GridItem>
                 <GridItem>
