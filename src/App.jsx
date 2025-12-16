@@ -1,5 +1,14 @@
-import { Grid, GridItem, Drawer, CloseButton, useBreakpointValue } from "@chakra-ui/react"
+import {
+    Grid,
+    GridItem,
+    Drawer,
+    CloseButton,
+    IconButton,
+    useBreakpointValue
+} from "@chakra-ui/react"
+import { BsLayoutSplit } from "react-icons/bs";
 import Sidebar from "./components/Sidebar.jsx";
+import {useState} from "react";
 
 function DesktopLayout() {
     return (
@@ -25,9 +34,10 @@ function DesktopLayout() {
 }
 
 function MobileLayout() {
+    const [open, setOpen] = useState(false);
     return (
         <>
-            <Drawer.Root open placement={"start"} size={"xs"}>
+            <Drawer.Root open={open} placement="start" size="xs" onOpenChange={(e) => setOpen(e.open)}>
                 <Drawer.Backdrop/>
                 <Drawer.Positioner>
                     <Drawer.Content bg="bg.muted" w={"250px"}>
@@ -51,6 +61,13 @@ function MobileLayout() {
                     bg="bg.muted"
                     borderBottomWidth={"1px"}
                     borderColor="colorPalette.800">
+                    <IconButton
+                        aria-label="Open menu"
+                        icon={<BsLayoutSplit/>}
+                        variant="ghost"
+                        onClick={() => setOpen(true)}
+                        mr={2}
+                    />
                     Header
                 </GridItem>
                 <GridItem>
