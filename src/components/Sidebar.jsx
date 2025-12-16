@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import {Box, Container, Spinner, EmptyState, Button, Text, Link} from "@chakra-ui/react";
+import { Link as Navigate } from "react-router-dom";
 import {BsClockHistory } from "react-icons/bs"
 
 export default function Sidebar() {
@@ -18,8 +19,10 @@ export default function Sidebar() {
 function SidebarItemList() {
     const [items, setItems] = useState(null);
     const addItemAction = (
-        <Button w={"100%"}>
-            Add
+        <Button w={"100%"} asChild>
+            <Navigate to={'/new'}>
+                Add
+            </Navigate>
         </Button>
     )
 
@@ -65,8 +68,10 @@ function SidebarItemList() {
 
 function SidebarItem({data = {}}) {
     return (
-        <Link href={`/m/${data.id}`} display={"block"} mb={"15px"}>
-            {data.title}
+        <Link asChild display={"block"} mb={"15px"}>
+            <Navigate to={`/m/${data.id}`}>
+                {data.title}
+            </Navigate>
         </Link>
     );
 }
