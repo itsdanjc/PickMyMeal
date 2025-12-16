@@ -7,7 +7,9 @@ import {
     useBreakpointValue
 } from "@chakra-ui/react"
 import { BsLayoutSplit } from "react-icons/bs";
+import { Outlet } from "react-router-dom";
 import Sidebar from "./components/Sidebar.jsx";
+import AppRoutes from "./routes.jsx";
 import {useState} from "react";
 
 function DesktopLayout() {
@@ -27,7 +29,7 @@ function DesktopLayout() {
                 <Sidebar/>
             </GridItem>
             <GridItem>
-                Main
+                <AppRoutes />
             </GridItem>
         </Grid>
     )
@@ -71,7 +73,7 @@ function MobileLayout() {
                     Header
                 </GridItem>
                 <GridItem>
-                    Main
+                    <AppRoutes />
                 </GridItem>
             </Grid>
         </>
