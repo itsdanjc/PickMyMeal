@@ -1,8 +1,11 @@
-# Pick My Meal
+<div style="text-align: center">
 
-**Can't decide what to order? Let an AI decide for you!**
 
----
+# ![icon](https://itsdanjc.com/favicon.ico) PickMyMeal
 
-## Changelog
-*See the [releases](https://github.com/itsdanjc/PickMyMeal/releases/latest) page for the full changelog.*
+[Site](https://pickmymeal.itsdanjc.com) |
+[Wiki](https://github.com/itsdanjc/PickMyMeal/wiki) |
+
+[![Screenshot](https://files.itsdanjc.com/pickmymeal/repostatic/screenshot.png)](https://pickmymeal.itsdanjc.com)
+
+</div>
