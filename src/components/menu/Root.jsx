@@ -1,26 +1,35 @@
 import {Tabs, Box, Flex, Heading, useTabs, useBreakpointValue} from "@chakra-ui/react"
 import {useEffect, useMemo} from "react";
-import {BsList, BsGearFill} from "react-icons/bs";
+import {BsList, BsGearFill, BsDice4Fill} from "react-icons/bs";
 import {useParams} from "react-router-dom";
 import NotFoundError from "../NotFoundError.jsx";
+import Editor from "./Editor.jsx";
 
 export default function Root() {
     const {uuid, tabId} = useParams();
         const tabs = useTabs({
-        defaultValue: tabId ?? "edit"
+        defaultValue: tabId ?? "roll"
     });
     const pageTabs = useMemo(
         () => ({
+            roll: {
+                name: "Roll",
+                icon: <BsDice4Fill/>,
+                body: "Settings",
+                props: {}
+            },
             edit: {
                 name: "Editor",
-                icon: <BsList />,
-                body: "Editor",
+                icon: <BsList/>,
+                body: <Editor/>,
+                props: {}
             },
             settings: {
                 name: "Settings",
-                icon: <BsGearFill />,
+                icon: <BsGearFill/>,
                 body: "Settings",
-            },
+                props: {}
+            }
         }),
         []
     );
@@ -44,7 +53,7 @@ export default function Root() {
         let tabs = []
         for (const tab in pageTabs){
             tabs.push((
-                <Tabs.Trigger key={tab} value={tab}>
+                <Tabs.Trigger key={tab} value={tab} {...pageTabs[tab].props} flexShrink={0}>
                     {pageTabs[tab].icon}
                     {pageTabs[tab].name}
                 </Tabs.Trigger>
@@ -57,7 +66,7 @@ export default function Root() {
         let tabs = []
         for (const tab in pageTabs){
             tabs.push((
-                <Tabs.Content key={tab} value={tab}>
+                <Tabs.Content key={tab} value={tab} p={4}>
                     {pageTabs[tab].body}
                 </Tabs.Content>
             ))
@@ -67,9 +76,9 @@ export default function Root() {
 
 
     return !useMobileLayout ? (
-        <Box paddingBlock={3} paddingInline={5}>
-            <Heading truncate pb={4}>{"Untitled"}</Heading>
-            <Tabs.RootProvider defaultValue="members" variant="subtle" value={tabs}>
+        <Box>
+            <Heading truncate p={4}>{"Untitled Menu"}</Heading>
+            <Tabs.RootProvider defaultValue="members" variant="outline" lazyMount  unmountOnExit value={tabs}>
                 <Tabs.List>
                     {tabList()}
                 </Tabs.List>
@@ -77,14 +86,14 @@ export default function Root() {
             </Tabs.RootProvider>
         </Box>
     ) : (
-        <Box paddingBlock={3} paddingInline={5}>
-            <Tabs.RootProvider defaultValue="members" variant="subtle" value={tabs}>
-                <Flex gap={5}>
-                    <Heading minW={0} flex={1} truncate>{"Untitled"}</Heading>
-                    <Tabs.List flexShrink={0}>
+        <Box>
+            <Tabs.RootProvider defaultValue="members" variant="outline" lazyMount unmountOnExit  value={tabs}>
+                <Tabs.List pt={3}>
+                    <Flex gap={2} w={"100%"}>
+                        <Heading ml={4} mr={5} truncate>{"Untitled Menu"}</Heading>
                         {tabList()}
-                    </Tabs.List>
-                </Flex>
+                    </Flex>
+                </Tabs.List>
                 {tabBody()}
             </Tabs.RootProvider>
         </Box>
