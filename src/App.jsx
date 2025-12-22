@@ -13,22 +13,24 @@ import {useState} from "react";
 
 function DesktopLayout() {
     return (
-        <Grid h="100vh" templateRows={"auto 1fr"} templateColumns={"250px 1fr"}>
+        <Grid h="100vh" w="100vw" templateRows={"auto 1fr"} templateColumns={"250px 1fr"}>
             <GridItem
                 colSpan={2}
                 bg="bg.muted"
                 borderBottomWidth={"1px"}
                 borderColor="colorPalette.800"
-                p={2}>
+                p={2}
+                overflow="auto">
                 Header
             </GridItem>
             <GridItem
                 bg="bg.muted"
                 borderRightWidth={"1px"}
-                borderColor="colorPalette.800">
+                borderColor="colorPalette.800"
+                overflow="auto">
                 <Sidebar/>
             </GridItem>
-            <GridItem>
+            <GridItem overflow="auto">
                 <AppRoutes />
             </GridItem>
         </Grid>
@@ -62,7 +64,8 @@ function MobileLayout() {
                     bg="bg.muted"
                     borderBottomWidth={"1px"}
                     borderColor="colorPalette.800"
-                    p={2}>
+                    p={2}
+                    overflow="auto">
                     <IconButton
                         aria-label="Open menu"
                         variant="outline"
@@ -71,7 +74,7 @@ function MobileLayout() {
                     ><BsList/></IconButton>
                     Header
                 </GridItem>
-                <GridItem>
+                <GridItem overflow="auto">
                     <AppRoutes />
                 </GridItem>
             </Grid>
